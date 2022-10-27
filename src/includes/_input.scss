@@ -33,7 +33,7 @@ $vars: ();
 		min-width: -get('min-width');
 		padding: -get('padding');
 		order: 2;
-		transition: -get('transition');
+		transition: #{-get('transition')};
 
 		@if -get('focus-shadow') == true {
 			&:focus {

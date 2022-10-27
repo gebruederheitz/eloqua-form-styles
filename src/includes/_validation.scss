@@ -12,10 +12,6 @@ $vars: () !default;
 	}
 }
 
-/* @FIXME: this seems kind of important */
-$eloqua-input-transition: background-position 800ms ease, border 500ms ease;
-$eloqua-input-width: 100%;
-
 @mixin styles {
 	.field_error {
 		background-color: -get('colors', 'error', 'bg');
