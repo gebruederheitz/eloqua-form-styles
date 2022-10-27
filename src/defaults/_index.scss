@@ -1,0 +1,45 @@
+@forward 'checkbox';
+@forward 'field';
+@forward 'geosuggest';
+@forward 'input';
+@forward 'label';
+@forward 'validation-error';
+
+@use 'colors';
+@use 'icons';
+
+$-field-padding: 10px;
+
+$global: (
+	// spacing
+	'padding': $-field-padding,
+	'padding-bottom': (3 * $-field-padding),
+	'padding-top': $-field-padding,
+
+	// flex-layout
+	'align': baseline,
+	'justify': space-between,
+	'flex-flow': row wrap,
+	'flex-flow-lg': row wrap,
+
+	// colours
+	'colors': colors.$colors,
+	// icons (select caret & validation)
+	'icons': icons.$icons,
+
+	// typography
+	'font-family': null,
+	'font-size': 1em,
+	'font-weight': null,
+	'line-height': null,
+	'text-align': null,
+
+	// labels, inputs, error fields, submit button
+	'border': 1px solid #ccc,
+	'border-bottom': null,
+	'border-radius': null
+);
+
+@forward 'submit' with (
+	$globals: $global
+);

@@ -1,0 +1,132 @@
+/**
+  * Themeable styles for the /gh haufe-eloqua project
+  * Responsive react-powered forms integrating with
+  * the Oracle Eloqua platform
+  *
+  * Use rows '.form-row' to group input fields.
+  *
+  *
+  */
+@use 'sass:map';
+@use 'defaults';
+
+@use 'mixins/mixins';
+@use 'mixins/modules';
+
+// Configurable modules
+@use 'includes/checkbox';
+@use 'includes/field';
+@use 'includes/form-row';
+@use 'includes/geosuggest';
+@use 'includes/input';
+@use 'includes/label';
+@use 'includes/submit';
+@use 'includes/submit-message';
+@use 'includes/validation';
+
+// Default user configuration: empty
+$configuration: () !default;
+$field-configuration: () !default;
+$scaling: 1 !default;
+$scaling-sm: 0.85 * $scaling !default;
+
+@function -get($keys...) {
+	@if (map.has-key($vars, $keys...)) {
+		@return map.get($vars, $keys...);
+	} @else {
+		@return null;
+	}
+}
+
+// Configure all configurable modules ------------------------------------------
+$vars: modules.configure((), map.get($configuration, 'global'), ());
+
+checkbox.$vars: modules.configure(
+	defaults.$checkbox,
+	map.get($configuration, 'global'),
+	map.get($configuration, 'checkbox')
+);
+
+field.$vars: modules.configure(
+	defaults.$field,
+	map.get($configuration, 'global'),
+	map.get($configuration, 'field')
+);
+
+geosuggest.$vars: modules.configure(
+	defaults.$geosuggest,
+	map.get($configuration, 'global'),
+	map.get($configuration, 'geosuggest')
+);
+
+input.$vars: modules.configure(
+	defaults.$input,
+	map.get($configuration, 'global'),
+	map.get($configuration, 'input')
+);
+
+label.$vars: modules.configure(
+	defaults.$label,
+	map.get($configuration, 'global'),
+	map.get($configuration, 'label')
+);
+
+$form-row-vars: modules.configure((), map.get($configuration, 'global'), ());
+
+submit.$vars: modules.configure(
+	defaults.$submit,
+	map.get($configuration, 'global'),
+	map.get($configuration, 'submit')
+);
+
+submit-message.$vars: modules.configure(
+	defaults.$submit-message,
+	map.get($configuration, 'global'),
+	map.get($configuration, 'submit-message')
+);
+
+validation.$vars: modules.configure(
+	defaults.$validation-error,
+	map.get($configuration, 'global'),
+	map.get($configuration, 'validation-error')
+);
+
+/* Elements to be hidden in production */
+.gh-editor-demo {
+	display: none;
+}
+
+.eloqua-form {
+	background-color: -get('colors', 'bg');
+	// Set the font size on the form container's container
+	font-size: #{$scaling}rem;
+
+	@include mixins.media(s) {
+		font-size: #{$scaling-sm}rem;
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	.form {
+		&_group.form-row {
+			@include form-row.styles(m, $form-row-vars);
+
+			&--submit .eloqua-form-submit {
+				@include submit.styles;
+				@include submit-message.styles;
+			}
+		}
+
+		&_field {
+			@include field.styles;
+
+			@include validation.styles;
+			@include label.styles;
+			@include input.styles;
+			@include checkbox.styles;
+			@include geosuggest.styles;
+		}
+	}
+}

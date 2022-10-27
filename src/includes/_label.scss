@@ -1,0 +1,45 @@
+@forward '../mixins/modules';
+
+@use 'sass:map';
+@use '../mixins/mixins';
+
+$vars: ();
+
+@function -get($keys...) {
+	@if (map.has-key($vars, $keys...)) {
+		@return map.get($vars, $keys...);
+	} @else {
+		@return null;
+	}
+}
+
+@mixin styles {
+	label.field_label,
+	span.radio_label {
+		background-color: -get('colors', 'bg');
+		border: -get('border');
+		border-color: -get('colors', 'border');
+		color: -get('colors', 'text');
+		display: -get('display');
+		flex: -get('flex');
+		font-family: -get('font-family');
+		font-size: -get('font-size');
+		font-weight: -get('font-weight');
+		letter-spacing: -get('letter-spacing');
+		line-height: -get('line-height');
+		margin: -get('margin') -get('margin') -get('margin-bottom');
+		order: 1;
+		padding: -get('padding');
+		text-align: -get('text-align');
+		text-decoration: none;
+		text-transform: -get('text-transform');
+	}
+
+	&.has-error {
+		label.field_label,
+		span.radio_label {
+			color: -get('colors', 'error', 'text');
+			border-color: -get('colors', 'error', 'border');
+		}
+	}
+}

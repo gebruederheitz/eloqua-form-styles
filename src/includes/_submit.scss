@@ -1,0 +1,54 @@
+@use 'sass:map';
+@use '../mixins/mixins';
+@use '../mixins/modules';
+@use '../includes/form-row';
+
+$vars: ();
+
+@function -get($keys...) {
+	@if (map.has-key($vars, $keys...)) {
+		@return map.get($vars, $keys...);
+	} @else {
+		@return null;
+	}
+}
+
+// The submit field
+@mixin styles {
+	@include form-row.styles(m, $vars);
+
+	padding: -get('padding-top') -get('padding') -get('padding-bottom');
+	justify-content: -get('justify');
+	flex-flow: -get('flex-flow');
+
+	.form_submit.elq-submit {
+		background-color: -get('colors', 'highlight');
+		border: -get('border');
+		border-radius: -get('border-radius');
+		box-shadow: -get('box-shadow');
+		color: -get('colors', 'text');
+		cursor: pointer;
+		font-family: -get('font-family');
+		font-size: -get('font-size');
+		font-weight: -get('font-weight');
+		line-height: -get('line-height');
+		margin: -get('margin');
+		padding: -get('button-padding');
+		text-align: -get('text-align');
+		text-decoration: -get('text-decoration');
+		text-transform: -get('text-transform');
+		transition: -get('transition');
+		width: -get('width');
+
+		&:hover {
+			background-color: -get('hover', 'color-bg');
+			border-color: -get('hover', 'color-border');
+			box-shadow: -get('hover', 'box-shadow');
+			color: -get('hover', 'color-text');
+		}
+	}
+
+	@include mixins.media(m) {
+		flex-flow: -get('flex-flow-lg');
+	}
+}

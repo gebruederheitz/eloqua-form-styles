@@ -1,0 +1,20 @@
+// Colours that are (re-)used across various modules
+$colors: (
+	'text': #33333e,
+	'bg': null,
+	'highlight': #0093e1,
+	'border': null,
+
+	'error': (
+		'text': #b00,
+		'bg': transparent,
+		'highlight': #b00,
+		'border': #b00,
+	),
+	'success': (
+		'text': #380,
+		'bg': transparent,
+		'highlight': null,
+		'border': null,
+	),
+);

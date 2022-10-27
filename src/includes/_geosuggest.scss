@@ -1,0 +1,71 @@
+@forward '../mixins/modules';
+
+@use 'sass:map';
+@use '../mixins/mixins';
+
+$vars: ();
+
+@function -get($keys...) {
+	@if (map.has-key($vars, $keys...)) {
+		@return map.get($vars, $keys...);
+	} @else {
+		@return null;
+	}
+}
+
+// Google Places Geosuggest
+@mixin styles {
+	.geosuggest {
+		flex: -get('flex');
+		order: 2;
+		position: relative;
+
+		&__input-wrapper {
+			input {
+				width: 100%;
+
+				&::placeholder {
+					color: transparent !important;
+				}
+			}
+		}
+
+		&__suggests {
+			background-color: -get('colors', 'bg');
+			border: -get('border');
+			border-radius: -get('border-radius');
+			border-top: none;
+			list-style: none;
+			padding: 0;
+
+			&-wrapper {
+				cursor: pointer;
+				margin-top: -get('margin-top');
+				max-height: 16em;
+				overflow-y: auto;
+				position: absolute;
+				text-align: left;
+				width: 100%;
+				z-index: 9999;
+			}
+
+			&--hidden {
+				display: none;
+			}
+		}
+
+		&__item {
+			font-size: -get('font-size');
+			font-weight: 300;
+			margin-bottom: 4px;
+			padding: 6px;
+
+			&:hover,
+			&--active {
+				background-color: -get('colors', 'highlight');
+				color: -get('hover-color');
+				transition: all 200ms;
+			}
+		}
+	}
+}

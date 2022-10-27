@@ -1,0 +1,15 @@
+@use 'sass:map';
+@use '../mixins/mixins';
+
+@mixin styles($breakpoint, $vars: ()) {
+	align-items: map.get($vars, 'align');
+	display: flex;
+	flex-flow: map.get($vars, 'flex-flow');
+	justify-content: map.get($vars, 'justify');
+	margin: 0;
+	width: 100%;
+
+	@include mixins.media($breakpoint) {
+		flex-flow: map.get($vars, 'flex-flow-lg');
+	}
+}

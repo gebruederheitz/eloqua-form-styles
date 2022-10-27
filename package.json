@@ -1,0 +1,25 @@
+{
+  "name": "@gebruederheitz/eloqua-form-styles",
+  "version": "1.4.4",
+  "description": "Opinionated SASS modules for generating theme stylesheets for forms based on\nOracle's Eloqua marketing platform.",
+  "repository": "git://github.com/gebruederheitz/eloqua-form-styles",
+  "main": "src/eloqua.scss",
+  "author": "Andreas Maros <andreas.maros@gebruederheitz.de>",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "lint": "stylelint --config .stylelintrc src/",
+    "release": "release-it --only-version"
+  },
+  "engines": {
+    "node": "16"
+  },
+  "devDependencies": {
+    "prettier": "^2.7.1",
+    "release-it": "^15.5.0",
+    "stylelint": "^14.14.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-recommended-scss": "^8.0.0",
+    "stylelint-config-standard": "^29.0.0",
+    "stylelint-scss": "^4.3.0"
+  }
+}

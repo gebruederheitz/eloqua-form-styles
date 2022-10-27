@@ -1,0 +1,18 @@
+@use 'sass:map';
+@use '../defaults';
+
+@function configure($defaults, $userGlobals, $userValues) {
+	@if (not $defaults) {
+		$defaults: ();
+	}
+	@if (not $userGlobals) {
+		$userGlobals: ();
+	}
+	@if (not $userValues) {
+		$userValues: ();
+	}
+
+	$mergedGlobals: map.deep-merge(defaults.$global, $userGlobals);
+	$mergedDefaults: map.deep-merge($mergedGlobals, $defaults);
+	@return map.deep-merge($mergedDefaults, $userValues);
+}

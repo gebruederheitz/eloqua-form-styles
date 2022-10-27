@@ -1,0 +1,120 @@
+@forward '../mixins/modules';
+
+@use 'sass:map';
+@use '../mixins/mixins';
+
+$vars: ();
+
+@function -get($keys...) {
+	@if (map.has-key($vars, $keys...)) {
+		@return map.get($vars, $keys...);
+	} @else {
+		@return null;
+	}
+}
+
+@mixin styles {
+	input,
+	input.field_input,
+	select,
+	textarea {
+		background-color: -get('colors', 'bg');
+		border: -get('border');
+		border-bottom: -get('border-bottom');
+		border-color: -get('colors', 'border');
+		border-radius: -get('border-radius');
+		color: -get('colors', 'text');
+		display: -get('display');
+		flex: -get('flex');
+		font-size: -get('font-size');
+		height: -get('height');
+		line-height: -get('line-height');
+		margin: -get('margin') -get('margin') -get('margin-bottom');
+		min-width: -get('min-width');
+		padding: -get('padding');
+		order: 2;
+		transition: -get('transition');
+
+		@if -get('focus-shadow') == true {
+			&:focus {
+				box-shadow: 0 0 5px 1px -get('colors', 'highlight');
+			}
+		}
+
+		@if -get('focus-border') == true {
+			&:focus {
+				border-color: -get('colors', 'highlight');
+			}
+		}
+	}
+
+	&.has-error {
+		input,
+		input.field_input,
+		select,
+		textarea {
+			border-color: -get('colors', 'error', 'border');
+		}
+
+		&.form_field--select,
+		&.form_field--text {
+			input,
+			input.field_input,
+			select {
+				@include mixins.input-bg(
+					-get('colors', 'error', 'bg'),
+					-get('icons', 'error')
+				);
+			}
+
+			textarea {
+				@include mixins.input-bg(
+					-get('colors', 'error', 'bg'),
+					-get('icons', 'error'),
+					'textarea'
+				);
+			}
+		}
+	}
+
+	textarea {
+		height: -get('textarea-height');
+		min-height: -get('textarea-min-height');
+	}
+
+	//select option {
+	//    color: $eloqua-select-option-color;
+	//    background-color: $eloqua-select-option-bg-color;
+	//}
+
+	&.form_field--select select {
+		appearance: none;
+		background-image: -get('icons', 'caret-down');
+		background-position: right 5% bottom 50%;
+		background-size: 20px 50%;
+		background-repeat: no-repeat;
+		background-origin: padding-box;
+		padding-right: 20px;
+	}
+
+	&.validation-passed {
+		&.form_field--select,
+		&.form_field--text {
+			input,
+			select {
+				@include mixins.input-bg(
+					-get('colors', 'error', 'bg'),
+					-get('icons', 'success')
+				);
+			}
+
+			textarea {
+				@include mixins.input-bg(
+					-get('colors', 'error', 'bg'),
+					-get('icons', 'success'),
+					'textarea'
+				);
+			}
+		}
+	}
+}

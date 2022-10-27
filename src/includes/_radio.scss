@@ -1,0 +1,76 @@
+/* RADIO INPUTS – WIP */
+
+&--radio {
+	div.field_input {
+		display: flex;
+		flex-flow: row wrap;
+	}
+
+	.radio_item {
+		padding: 10px;
+		flex: 0 1 140px;
+	}
+
+	input[type='radio'] {
+		// hide the actual checkbox visually
+		border: 0;
+		clip: rect(0 0 0 0);
+		clip-path: inset(50%);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		white-space: nowrap;
+		width: 1px;
+
+		// Box.
+		& + span::before {
+			background-color: #fff;
+			border: 1px solid #333;
+			border-radius: 10px;
+			content: '';
+			display: inline-block;
+			height: 20px;
+			margin-right: 6px;
+			vertical-align: middle;
+			width: 20px;
+		}
+
+		// Box hover
+		&:hover + span::before {
+			border-color: #000;
+		}
+
+		// Box focus
+		&:focus + span::before {
+			box-shadow: 0 0 0 2px rgba(0 0 0 / 15%);
+		}
+
+		// Disabled state label.
+		&:disabled + span {
+			color: #b8b8b8;
+			cursor: auto;
+		}
+
+		// Disabled box.
+		&:disabled + span::before {
+			box-shadow: none;
+			background: #ddd;
+		}
+
+		// Checkmark
+		&:checked + span::after {
+			background-color: #fff;
+			box-shadow: 2px 0 0 #333, 4px 0 0 #333, 4px -2px 0 #333,
+				4px -4px 0 #333, 4px -6px 0 #333, 4px -8px 0 #333;
+			content: '';
+			height: 2px;
+			position: absolute;
+			left: 5px;
+			top: 9px;
+			transform: rotate(45deg);
+			width: 2px;
+		}
+	}
+}

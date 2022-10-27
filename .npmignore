@@ -1,0 +1,6 @@
+.stylelintrc
+Makefile
+.release-it.yaml
+.prettierrc
+.nvmrc
+examples/

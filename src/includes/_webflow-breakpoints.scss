@@ -1,0 +1,18 @@
+// WEBFLOW RESPONSIVE: MAX-WIDTHS
+$webflow-screen-size-phone-portrait: 479px;
+$webflow-screen-size-phone-landscape: 767px;
+$webflow-screen-size-tablet: 991px;
+$webflow-screen-size-desktop: 1600px;
+
+// (CUSTOM) BREAKPOINTS
+$eloqua-screen-size-s: $webflow-screen-size-phone-portrait !default;
+$eloqua-screen-size-m: $webflow-screen-size-phone-landscape !default;
+$eloqua-screen-size-l: $webflow-screen-size-tablet !default;
+$eloqua-screen-size-xl: $webflow-screen-size-desktop !default;
+
+$eloqua-screen-size: (
+	s: $eloqua-screen-size-s,
+	m: $eloqua-screen-size-m,
+	l: $eloqua-screen-size-l,
+	xl: $eloqua-screen-size-xl,
+);

@@ -1,0 +1,45 @@
+@use 'sass:map';
+@use 'sass:color';
+
+$globals: () !default;
+
+$basePadding: map.get($globals, 'padding');
+
+$submit: (
+	'padding': $basePadding,
+	'padding-top': (
+		$basePadding * 1.5,
+	),
+	'padding-bottom': $basePadding,
+	'align': center,
+	'justify': center,
+	'flex-flow': column,
+	'flex-flow-lg': column,
+	'margin': null,
+	'text-align': center,
+	'colors': (
+		'text': #fff,
+		//'bg': map.get($globals, 'colors', 'highlight'),
+	),
+	'width': null,
+	'line-height': 1.2,
+
+	'box-shadow': null,
+	'button-padding': 0.5em 1.5em,
+	'text-decoration': null,
+	'text-transform': uppercase,
+	'transition': null,
+	'hover': (
+		'color-text': null,
+		'color-bg': color.scale(
+			map.get($globals, 'colors', 'highlight'),
+			$lightness: -10%
+		),
+		'color-border': null,
+		'box-shadow': null,
+	),
+);
+
+$submit-message: (
+	'padding': 0 5px,
+);

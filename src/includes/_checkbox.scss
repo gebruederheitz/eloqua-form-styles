@@ -1,0 +1,80 @@
+@forward '../mixins/modules';
+
+@use 'sass:map';
+@use '../mixins/mixins';
+@use '../mixins/checkbox';
+
+$vars: ();
+
+@function -get($keys...) {
+	@if (map.has-key($vars, $keys...)) {
+		@return map.get($vars, $keys...);
+	} @else {
+		@return null;
+	}
+}
+
+// @NB
+//       Basic custom checkbox styling to hide the default input is already
+//       included in the CSS shipped with the v3 haufe-eloqua scripts.
+//       The "tick"-style checkmarks can be overridden by importing the
+//       "_checkbox_fullcolor" mixin (by setting the variable
+//       $eloqua-chekbox-fullcolor).
+
+@mixin styles {
+	&--checkbox,
+	&--radio {
+		flex: -get('flex');
+
+		label.field_label {
+			cursor: pointer;
+			display: block;
+			margin-bottom: -get('margin-bottom');
+			padding: -get('padding');
+			width: 100%;
+
+			input + span {
+				color: -get('colors', 'text');
+				font-family: -get('font-family');
+				font-size: -get('font-size');
+				font-weight: -get('font-weight');
+				line-height: -get('line-height');
+				margin: 0;
+				padding: 0;
+				position: relative;
+				text-align: -get('text-align');
+				text-transform: -get('text-transform');
+
+				a {
+					font-family: -get('font-family');
+					font-size: -get('font-size');
+					font-weight: -get('font-weight');
+					line-height: -get('line-height');
+					//color: $eloqua-checkbox-link-color;
+					//text-decoration: $eloqua-checkbox-link-text-decoration;
+					//text-transform: $eloqua-checkbox-link-text-transform;
+				}
+
+				&::before {
+					border-color: -get('colors', 'border');
+				}
+			}
+
+			@if -get('use-fullcolor') == true {
+				@include checkbox.fullcolor(
+					-get('colors', 'bg'),
+					-get('colors', 'highlight'),
+					-get('colors', 'checked-border')
+				);
+			}
+		}
+
+		input[type='checkbox'] {
+			@include mixins.whenValidationError {
+				& + span::before {
+					border-color: -get('colors', 'error', 'highlight');
+				}
+			}
+		}
+	}
+}

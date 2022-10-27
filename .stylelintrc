@@ -1,0 +1,12 @@
+{
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-recommended-scss",
+        "stylelint-config-prettier"
+    ],
+    "rules": {
+        "indentation": "tab",
+        "selector-class-pattern": null,
+        "no-descending-specificity": null
+    }
+}

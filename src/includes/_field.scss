@@ -1,0 +1,47 @@
+@use '../defaults';
+@use 'sass:map';
+@use '../mixins/mixins';
+
+$vars: ();
+
+@function -get($keys...) {
+	@if (map.has-key($vars, $keys...)) {
+		@return map.get($vars, $keys...);
+	} @else {
+		@return null;
+	}
+}
+
+@mixin styles {
+	// -- FIELD --------------------------------------------------------
+	align-items: -get('align');
+	align-self: flex-start;
+	display: flex;
+	flex-flow: -get('flex-flow');
+	flex: -get('flex');
+	justify-content: -get('justify');
+	min-width: -get('min-width');
+	padding: _get('padding-top') -get('padding') -get('padding-bottom');
+	transition: all 200ms ease 210ms;
+
+	&.m {
+		flex-grow: 10;
+	}
+
+	@include mixins.media(m) {
+		flex-flow: -get('flex-flow-lg');
+	}
+
+	&.hidden,
+	&.hidden *,
+	&.hidden label.field_label {
+		display: block;
+		max-height: 0;
+		visibility: hidden;
+		opacity: 0;
+		margin: 0;
+		padding: 0;
+		line-height: 0;
+		transition-delay: 0ms;
+	}
+}

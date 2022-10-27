@@ -1,0 +1,21 @@
+@mixin fullcolor($bgColor, $effectColor, $borderColor) {
+	& {
+		input[type='checkbox'] + span::before,
+		input[type='radio'] + span::before {
+			background-color: $bgColor;
+		}
+
+		// Solid full-color checkbox "checkmarks"
+		input[type='checkbox']:checked + span::before,
+		input[type='radio']:checked + span::before {
+			background-color: $effectColor;
+			border-color: $borderColor;
+			box-shadow: inset 0 0 0 2px $bgColor;
+		}
+
+		input[type='checkbox']:checked + span::after,
+		input[type='radio']:checked + span::after {
+			display: none;
+		}
+	}
+}

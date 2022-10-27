@@ -1,0 +1,43 @@
+@use '../includes/webflow-breakpoints';
+
+@function -gh-screen-size($size) {
+	@return map-get(webflow-breakpoints.$eloqua-screen-size, $size);
+}
+
+@mixin media($size) {
+	@media screen and (max-width: -gh-screen-size($size)) {
+		@content;
+	}
+}
+
+@mixin whenValidationError {
+	.form_field.form_field--text.has-error &,
+	.form_field.form_field--select.has-error &,
+	.form_field.form_field--checkbox.has-error &,
+	.form_field.form_field--radio.has-error & {
+		@content;
+	}
+}
+
+@mixin input-bg($bg-color: null, $image: null, $type: 'input') {
+	/*
+		 @NB
+			IE needs more specific size measurements: 1.2em 1.2em for instance would do
+			it also seems to need a base64 image
+ 	*/
+
+	$size: auto 50%;
+
+	@if ($type == 'textarea') {
+		$size: auto 1.2em;
+	}
+
+	background: {
+		color: $bg-color;
+		position-x: right 5px;
+		position-y: bottom 50%;
+		repeat: no-repeat;
+		image: $image;
+		size: $size;
+	}
+}
