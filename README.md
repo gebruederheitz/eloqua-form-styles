@@ -18,10 +18,12 @@ to get started.
 
 ### Big List of settings
 
+-- _Work in progress_ --
+
 #### Global
 
 | Setting Key    | Default Value  | Description | Used By  |
-| -------------- | -------------- | ----------- |
+| -------------- | -------------- | ----------- | -------- |
 | padding        | `10px` | |
 | padding-bottom | `3 * 10px` | |
 | padding-top    | `10px` | |
