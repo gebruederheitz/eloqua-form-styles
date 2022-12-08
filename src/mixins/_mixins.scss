@@ -34,8 +34,7 @@
 
 	background: {
 		color: $bg-color;
-		position-x: right 5px;
-		position-y: bottom 50%;
+		position: calc(100% - 5px) 50%;
 		repeat: no-repeat;
 		image: $image;
 		size: $size;
