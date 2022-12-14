@@ -1,6 +1,6 @@
 {
   "name": "@gebruederheitz/eloqua-form-styles",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Opinionated SASS modules for generating theme stylesheets for forms based on\nOracle's Eloqua marketing platform.",
   "repository": "git://github.com/gebruederheitz/eloqua-form-styles",
   "main": "src/eloqua.scss",
