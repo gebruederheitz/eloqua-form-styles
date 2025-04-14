@@ -1,7 +1,8 @@
 @use '../includes/webflow-breakpoints';
+@use 'sass:map';
 
 @function -gh-screen-size($size) {
-	@return map-get(webflow-breakpoints.$eloqua-screen-size, $size);
+	@return map.get(webflow-breakpoints.$eloqua-screen-size, $size);
 }
 
 @mixin media($size) {

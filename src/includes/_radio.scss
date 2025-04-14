@@ -62,8 +62,13 @@
 		// Checkmark
 		&:checked + span::after {
 			background-color: #fff;
-			box-shadow: 2px 0 0 #333, 4px 0 0 #333, 4px -2px 0 #333,
-				4px -4px 0 #333, 4px -6px 0 #333, 4px -8px 0 #333;
+			box-shadow:
+				2px 0 0 #333,
+				4px 0 0 #333,
+				4px -2px 0 #333,
+				4px -4px 0 #333,
+				4px -6px 0 #333,
+				4px -8px 0 #333;
 			content: '';
 			height: 2px;
 			position: absolute;

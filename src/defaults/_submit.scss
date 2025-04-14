@@ -32,9 +32,9 @@ $submit: (
 	'hover': (
 		'color-text': null,
 		'color-bg': color.scale(
-			map.get($globals, 'colors', 'highlight'),
-			$lightness: -10%
-		),
+				map.get($globals, 'colors', 'highlight'),
+				$lightness: -10%
+			),
 		'color-border': null,
 		'box-shadow': null,
 	),
