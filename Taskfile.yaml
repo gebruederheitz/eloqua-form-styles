@@ -1,0 +1,29 @@
+version: 3
+tasks:
+  test:
+    desc: "Run basic code checks."
+    deps:
+      - install-dependencies
+    aliases:
+      - lint
+    cmds:
+      - asdf exec npm run prettier
+      - asdf exec npm run lint
+
+  release:
+    desc: "Create a tagged release."
+    deps:
+      - install-dependencies
+    cmd: npm run release
+
+  install:
+    aliases:
+      - install-dependencies
+    sources:
+      - package.json
+      - package-lock.json
+      - .tool-versions
+    generates:
+      - node_modules/**/*
+      - package-lock.json
+    cmd: asdf exec npm i
