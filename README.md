@@ -64,6 +64,5 @@ to get started.
 
 ### Dependencies
 
- - NodeJS 16.x & NPM
- - nvm
+ - Node.js with npm in the version from `.tool-versions` ([asdf](https://asdf-vm.com/))
  - GNU Make (or similar)
